@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Number:</strong>
+  <%= @number.number %>
+</p>
+
+<p>
+  <strong>Country code:</strong>
+  <%= @number.countrycode %>
+</p>
+
+<p>
+  <strong>Cn:</strong>
+  <%= @number.cn %>
+</p>
+
+<p>
+  <strong>Prefix:</strong>
+  <%= @number.prefix %>
+</p>
+
+<p>
+  <strong>Mcdu:</strong>
+  <%= @number.mcdu %>
+</p>
+
+<p>
+  <strong>Validation:</strong>
+  <%= @number.validation %>
+</p>
+
+<%= link_to 'Edit', edit_number_path(@number) %> |
+<%= link_to 'Back', numbers_path %>
