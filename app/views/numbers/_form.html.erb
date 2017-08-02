@@ -11,37 +11,44 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :number %>
-    <%= form.text_field :number, id: :number_number %>
+  <div class="row">
+    <div class="col-md-2">
+      <div class="form-group">
+        <%= form.label :number %>
+        <%= form.text_field :number, id: :number_number, class:'form-control' %>
+      </div>            
+    </div>           
+  </div>
+  <div class="row">
+    <div class="col-md-2"> 
+      <div class="form-group">
+        <%= form.label :countrycode, 'Country Code' %>
+        <%= form.text_field :countrycode, id: :number_countrycode, maxlength: 2, minlength: 2, size: 2, class:'form-control' %>
+      </div> 
+    </div>
+    <div class="col-md-1"> 
+      <div class="form-group">
+        <%= form.label :cn, 'CN' %>
+        <%= form.text_field :cn, id: :number_cn, maxlength: 2, minlength: 2, size: 2, class:'form-control' %>
+      </div> 
+    </div>
+    <div class="col-md-4">
+      <div class="form-group">
+        <%= form.label :prefix, 'Number' %>
+        <div class="form-inline">
+          <%= form.text_field :prefix, id: :number_prefix, maxlength: 5, minlength: 5, size: 5, class:'form-control' %> - 
+          <%= form.text_field :mcdu, id: :number_mcdu, maxlength: 4, minlength: 4, size: 4, class:'form-control' %>
+        </div> 
+      </div>
+    </div>    
   </div>
 
-  <div class="field">
-    <%= form.label :countrycode %>
-    <%= form.text_field :countrycode, id: :number_countrycode %>
-  </div>
-
-  <div class="field">
-    <%= form.label :cn %>
-    <%= form.text_field :cn, id: :number_cn %>
-  </div>
-
-  <div class="field">
-    <%= form.label :prefix %>
-    <%= form.text_field :prefix, id: :number_prefix, maxlength: 5, minlength: 5, size: 5 %>
-  </div>
-
-  <div class="field">
-    <%= form.label :mcdu %>
-    <%= form.text_field :mcdu, id: :number_mcdu %>
-  </div>
-
-  <div class="field">
+  <div class="form-group">
     <%= form.label :validation %>
-    <%= form.text_area :validation, id: :number_validation %>
+    <%= form.text_area :validation, id: :number_validation, class:'form-control' %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit 'Save', class:'btn btn-primary' %>
   </div>
 <% end %>
