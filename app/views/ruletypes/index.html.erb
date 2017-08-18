@@ -1,0 +1,26 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Ruletypes</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @ruletypes.each do |ruletype| %>
+      <tr>
+        <td><%= ruletype.name %></td>
+        <td><%= link_to 'Show', ruletype %></td>
+        <td><%= link_to 'Edit', edit_ruletype_path(ruletype) %></td>
+        <td><%= link_to 'Destroy', ruletype, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Ruletype', new_ruletype_path %>

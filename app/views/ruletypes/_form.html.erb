@@ -1,0 +1,27 @@
+<%= form_with(model: ruletype, local: true) do |form| %>
+  <% if ruletype.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(ruletype.errors.count, "error") %> prohibited this ruletype from being saved:</h2>
+
+      <ul>
+      <% ruletype.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="row">
+    <div class="col-md-2">
+      <div class="form-group">
+        <%= form.label :name %>
+        <%= form.text_field :name, id: :ruletype_name, class:'form-control' %>
+      </div>            
+    </div>           
+  </div>
+
+  <div class="actions">
+    <%= params.inspect %>
+    <%= form.submit 'Save', class:'btn btn-primary' %>
+  </div>
+<% end %>

@@ -134,5 +134,36 @@ module CodilityHelper
     end
   end
 
+  def permCheck(a)
+    a.sort!
+    i=0; permCheck = 1
+    n = a.size
+    while i < n do
+      if (a[i] != i+1) then
+        permCheck = 0
+        break
+      end
+      i+=1
+    end
+    return permCheck
+  end
+  
+  def frogRiverOne(x, a)
+    b = Array.new(x, 0)
+    i = 0
+    while i < a.size do
+      _val = a[i]
+      if b[_val-1] == 0 then
+        b[_val-1] = i+1
+      end
+      i+=1
+    end
+
+    b.sort!
+    if b.include?0 then return -1 end
+
+    return b[b.size-1]-1
+  end
+
 end
 
