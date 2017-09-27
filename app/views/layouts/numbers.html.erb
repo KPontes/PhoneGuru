@@ -4,16 +4,15 @@
     <title>PhoneGuru</title>
     <%= csrf_meta_tags %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag    'numbers', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <div class="site-wrapper background_image">
+    <div class="site-wrapper background_number">
       <div class="site-wrapper-inner">
-        <%= render "shared/application_nav" %>        
-        <div class="cover-container">    
-
+        <div class="cover-container"> 
+          <%= render "shared/application_nav" %>        
           <%= yield %>
         </div>
       </div>

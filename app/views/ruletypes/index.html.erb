@@ -13,9 +13,9 @@
     <% @ruletypes.each do |ruletype| %>
       <tr>
         <td><%= ruletype.name %></td>
-        <td><%= link_to 'Show', ruletype %></td>
-        <td><%= link_to 'Edit', edit_ruletype_path(ruletype) %></td>
-        <td><%= link_to 'Destroy', ruletype, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td>[ <%= link_to 'Show', ruletype %> / </td>
+        <td><%= link_to 'Edit', edit_ruletype_path(ruletype) %> / </td>
+        <td><%= link_to 'Destroy', ruletype, method: :delete, data: { confirm: 'Are you sure?' } %> ]</td>
       </tr>
     <% end %>
   </tbody>

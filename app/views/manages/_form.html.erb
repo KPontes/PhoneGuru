@@ -1,0 +1,33 @@
+<%= form_with(model: manage, local: true) do |form| %>
+  <% if manage.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(manage.errors.count, "error") %> prohibited this manage from being saved:</h2>
+
+      <ul>
+      <% manage.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <% if !(@manage.manager_id.nil?) %>
+      <% n = Number.find(@manage.manager_id).number %>
+    <% end %>
+    <%= form.label :manager_id %>
+    <%= form.number_field :manager_id, id: :manage_manager_id, value: n, placeholder: "CCAA999999999" %>
+  </div>
+
+  <div class="field">
+    <% if !(@manage.subordinate_id.nil?) %>
+      <% n = Number.find(@manage.subordinate_id).number %>
+    <% end %>    
+    <%= form.label :subordinate_id %>
+    <%= form.number_field :subordinate_id, id: :manage_subordinate_id, value: n, placeholder: "CCAA999999999"%>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

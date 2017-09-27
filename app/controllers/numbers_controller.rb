@@ -10,16 +10,18 @@ class NumbersController < ApplicationController
   # GET /numbers/1
   # GET /numbers/1.json
   def show
-
+    @ruletype = @number.ruletypes
   end
 
   # GET /numbers/new
   def new
+    @ruletype = Ruletype.all
     @number = Number.new
   end
 
   # GET /numbers/1/edit
   def edit
+    @ruletype = Ruletype.all
   end
 
   # POST /numbers
@@ -43,7 +45,16 @@ class NumbersController < ApplicationController
   def update
     respond_to do |format|
       if @number.update(number_params)
-        format.html { redirect_to @number, notice: 'Number was successfully updated.' }
+        # byebug
+        NumberRuletype.where(number_id: @number.id).destroy_all
+        
+        params["ruletype"]["ruletype_id"].each do |rtids|
+          @nrt = NumberRuletype.new
+          @nrt.number_id = @number.id
+          @nrt.ruletype_id = rtids
+          @nrt.save
+        end
+        format.html { redirect_to @number, notice: 'Number was successfully updated. ' + "#{params["ruletype"]["ruletype_id"]}"}
         format.json { render :show, status: :ok, location: @number }
       else
         format.html { render :edit }
@@ -71,5 +82,7 @@ class NumbersController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def number_params
       params.require(:number).permit(:number, :cn, :prefix, :mcdu, :countrycode, :validation)
+      params.require(:ruletype).permit(:ruletype_id)
+      # params[:number][:ruletype_ids]
     end
 end

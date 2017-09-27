@@ -1,0 +1,2 @@
+      invoke  active_record
+      create    db/migrate/20170922204605_add_index_to_manage.rb

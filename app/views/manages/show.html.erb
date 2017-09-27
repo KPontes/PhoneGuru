@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Manager:</strong>
+  <%= Number.find(@manage.manager_id).number %>
+</p>
+
+<p>
+  <strong>Subordinate:</strong>
+  <%= Number.find(@manage.subordinate_id).number %>
+</p>
+
+<%= link_to 'Edit', edit_manage_path(@manage) %> |
+<%= link_to 'Back', manages_path %>

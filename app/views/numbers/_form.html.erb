@@ -48,6 +48,13 @@
     <%= form.text_area :validation, id: :number_validation, class:'form-control' %>
   </div>
 
+  <% @ruletype.each do |rt| %>
+    <div>
+      <%= check_box_tag "ruletype[ruletype_id][]", rt.id, @number.ruletypes.include?(rt) %>
+      <%= rt.name %>
+    </div>
+  <% end %>
+ 
   <div class="actions">
     <%= form.submit 'Save', id: :number_save, class:'btn btn-primary' %>
   </div>

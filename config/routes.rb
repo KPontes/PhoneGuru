@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
+  resources :manages
   resources :numbers
   resources :ruletypes
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   get 'codility', to:'codility#index'
+  get 'about', to:'pages#about'
+  root to: 'pages#home'
   
   namespace :api do
     #resources :numbersapi do

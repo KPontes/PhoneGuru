@@ -1,0 +1,19 @@
+    <%= form.fields_for :ruletypes, number.ruletypes.build do |ruletypes_fields| %>
+      
+      <% @ruletype.each do |rt| %>
+        <%= ruletypes_fields.label :name => rt.name %>
+        <%= ruletypes_fields.text_field :name, 
+                                        :value => rt.name %> 
+        <% end %>
+                
+    <% end %>
+ 
+    
+    <%= form.label :ruletype_id, 'Rule type' %> <br>
+    <!-- 'form.collection_check_boxes(:ruletype_id, Ruletype.order(:name), :id, :name, {:selected => 1, :multiple => true} ) %> -->
+    <% callruletype %>
+    <%= form.collection_select(:ruletype_id, Ruletype.order(:name), :id, :name) %>
+
+    <%= form.fields_for :ruletypes, number.ruletypes.build do |rt_fields| %>
+      <%= render 'ruletype_fields', frt: rt_fields %>
+    <% end %>

@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Manages</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Manager</th>
+      <th></th>
+      <th>Subordinate</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @manages.each do |manage| %>
+      <tr>
+        <td><%= Number.find(manage.manager_id).number %></td>
+        <td> / </td>
+        <td><%= Number.find(manage.subordinate_id).number %> </td>
+        <td>[ <%= link_to 'Show', manage %> / </td>
+        <td><%= link_to 'Edit', edit_manage_path(manage) %> / </td>
+        <td><%= link_to 'Destroy', manage, method: :delete, data: { confirm: 'Are you sure?' } %> ]</td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Manage', new_manage_path %>

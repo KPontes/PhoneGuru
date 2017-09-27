@@ -10,10 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170815211446) do
+ActiveRecord::Schema.define(version: 20170922212029) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "manages", force: :cascade do |t|
+    t.integer "manager_id"
+    t.integer "subordinate_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["manager_id", "subordinate_id"], name: "index_manages_on_manager_id_and_subordinate_id", unique: true
+  end
 
   create_table "numbers", force: :cascade do |t|
     t.string "number"
@@ -26,7 +34,7 @@ ActiveRecord::Schema.define(version: 20170815211446) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "numbers_ruletypes", id: false, force: :cascade do |t|
+  create_table "numbers_ruletypes", force: :cascade do |t|
     t.bigint "number_id", null: false
     t.bigint "ruletype_id", null: false
   end
@@ -37,6 +45,8 @@ ActiveRecord::Schema.define(version: 20170815211446) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "manages", "numbers", column: "manager_id"
+  add_foreign_key "manages", "numbers", column: "subordinate_id"
   add_foreign_key "numbers_ruletypes", "numbers"
   add_foreign_key "numbers_ruletypes", "ruletypes"
 end

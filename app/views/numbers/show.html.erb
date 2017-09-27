@@ -1,34 +1,75 @@
-<p id="notice"><%= notice %></p>
+<html>
+  <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <title>Show Number</title>
+      <%= stylesheet_link_tag    'numbers', media: 'all', 'data-turbolinks-track': 'reload' %>
+      <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+  <body>
+    
+      <div class="container">
+        <h3><%= notice %></h3>
+        <div class="row">
+          <div class="col-md-4">
+            <p align="left">
+              <strong>Number:</strong>
+              <%= @number.number %>
+            </p>
+            
+            <p align="left">
+              <strong>Country code:</strong>
+              <%= @number.countrycode %>
+            </p>
+            
+            <p align="left">
+              <strong>Cn:</strong>
+              <%= @number.cn %>
+            </p>
+            
+            <p align="left">
+              <strong>Prefix:</strong>
+              <%= @number.prefix %>
+            </p>
+            
+            <p align="left">
+              <strong>Mcdu:</strong>
+              <%= @number.mcdu %>
+            </p>
+            
+            <p align="left">
+              <strong>Validation:</strong>
+              <%= @number.validation %>
+            </p>
+            <br>
+            <%= link_to 'Edit', edit_number_path(@number) %> |
+            <%= link_to 'Back', numbers_path %>
+          
+          </div>
+          <div class="col-md-4">
+            <p align="left">
+              <strong>Rules:</strong>
+              <% @ruletype.each do |rt| %>
+                <div align="left">
+                  <%= rt.name %>
+                </div>
+              <% end %>
+            </p>  
+          </div>
+          <div class="col-md-4">
+            <p align="left">
+              <strong>Managed Numbers:</strong>
+              <% get_subordinates(@number.id) %>
+              <% @manage.each do |mngd| %>
+                <div align="left">
+                  <%= Number.find(mngd.subordinate_id).number %>
+                </div>
+              <% end %>
+            </p>
+              
+          </div>
+        </div>
+      </div>
+   </body>
+</html>
 
-<p>
-  <strong>Number:</strong>
-  <%= @number.number %>
-</p>
-
-<p>
-  <strong>Country code:</strong>
-  <%= @number.countrycode %>
-</p>
-
-<p>
-  <strong>Cn:</strong>
-  <%= @number.cn %>
-</p>
-
-<p>
-  <strong>Prefix:</strong>
-  <%= @number.prefix %>
-</p>
-
-<p>
-  <strong>Mcdu:</strong>
-  <%= @number.mcdu %>
-</p>
-
-<p>
-  <strong>Validation:</strong>
-  <%= @number.validation %>
-</p>
-
-<%= link_to 'Edit', edit_number_path(@number) %> |
-<%= link_to 'Back', numbers_path %>
