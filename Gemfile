@@ -64,3 +64,5 @@ gem 'rspec-mocks', '~> 3.6'
 gem 'rspec-support', '~> 3.6'
 gem 'rspec-rails', '~> 3.6', '>= 3.6.1'
 gem 'rails-controller-testing', '~> 1.0', '>= 1.0.2'
+
+ruby "2.4.0"
