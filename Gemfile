@@ -66,3 +66,8 @@ gem 'rspec-rails', '~> 3.6', '>= 3.6.1'
 gem 'rails-controller-testing', '~> 1.0', '>= 1.0.2'
 
 ruby "2.4.0"
+
+# enable jQuery on heroku
+group :production, :staging do
+    gem 'rails_12factor', '~> 0.0.3'
+end
