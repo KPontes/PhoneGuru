@@ -1,4 +1,4 @@
-<%= form_with(model: manage, local: true) do |form| %>
+<%= form_with(model: manage, :url => {:action => "create"}, :method => "post", local: true) do |form| %>
   <% if manage.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(manage.errors.count, "error") %> prohibited this manage from being saved:</h2>
@@ -11,23 +11,45 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <% if !(@manage.manager_id.nil?) %>
-      <% n = Number.find(@manage.manager_id).number %>
-    <% end %>
-    <%= form.label :manager_id %>
-    <%= form.number_field :manager_id, id: :manage_manager_id, value: n, placeholder: "CCAA999999999" %>
+  <div class="row">
+    <div class="col-md-6" style="text-align:left">
+      <!--manager-->
+      <% n = "" %>
+      <% if !(@manage.manager_id.nil?) %>
+        <% n = Number.find(@manage.manager_id).number %>
+      <% end %>
+      <table>
+        <tr>
+          <td><%= form.label :manager_id %></td>
+          <td><%= form.number_field :manager_id, id: :manage_manager_id, value: n, placeholder: "CCAA999999999" %></td>
+        </tr>
+
+      <!--new subordinate-->
+      <% n = "" %>
+      <% if !(@manage.subordinate_id.nil?) %>
+        <% n = Number.find(@manage.subordinate_id).number %>
+      <% end %>
+        <tr>
+          <td><%= form.label :subordinate_id, "New subordinate" %></td>
+          <td><%= form.number_field :subordinate_id, id: :manage_subordinate_id, value: n, placeholder: "CCAA999999999"%></td>
+        </tr>
+      </table>
+      <div class="actions">
+        <%= form.submit 'Save', class:'btn btn-primary' %>
+      </div>
+    </div>
+
+      <!--list previous subordinates-->
+    <div class="col-md-6">
+      <strong>Subordinate Numbers:</strong>
+      <% @mng = get_subordinates(@manage.manager_id) %>
+      <% @mng.each do |mngd| %>
+        <p>
+          <%= Number.find(mngd.subordinate_id).number %>
+        </p>
+      <% end %>
+    </div>
+
   </div>
 
-  <div class="field">
-    <% if !(@manage.subordinate_id.nil?) %>
-      <% n = Number.find(@manage.subordinate_id).number %>
-    <% end %>    
-    <%= form.label :subordinate_id %>
-    <%= form.number_field :subordinate_id, id: :manage_subordinate_id, value: n, placeholder: "CCAA999999999"%>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
 <% end %>

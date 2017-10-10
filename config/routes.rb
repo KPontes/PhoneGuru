@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  resources :manages
+  resources :manages do
+    member do
+      get :newsubordinate
+    end
+  end
   resources :numbers
   resources :ruletypes
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

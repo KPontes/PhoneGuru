@@ -1,6 +1,5 @@
-<p id="notice"><%= notice %></p>
-
 <h1>Manages</h1>
+<p id="notice"><%= params["notice"] %></p>
 
 <table>
   <thead>
@@ -18,9 +17,8 @@
         <td><%= Number.find(manage.manager_id).number %></td>
         <td> / </td>
         <td><%= Number.find(manage.subordinate_id).number %> </td>
-        <td>[ <%= link_to 'Show', manage %> / </td>
-        <td><%= link_to 'Edit', edit_manage_path(manage) %> / </td>
-        <td><%= link_to 'Destroy', manage, method: :delete, data: { confirm: 'Are you sure?' } %> ]</td>
+        <td>[ <%= link_to 'New Subordinate', newsubordinate_manage_path(manage) %> / </td>
+        <td><%= link_to 'Delete', manage, method: :delete, data: { confirm: 'Are you sure?' } %> ]</td>
       </tr>
     <% end %>
   </tbody>
@@ -28,4 +26,4 @@
 
 <br>
 
-<%= link_to 'New Manage', new_manage_path %>
+<%= link_to 'New Manager / Subordinate', new_manage_path %>

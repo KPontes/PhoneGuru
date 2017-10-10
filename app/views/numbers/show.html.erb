@@ -59,14 +59,14 @@
           <div class="col-md-4">
             <p align="left">
               <strong>Managed Numbers:</strong>
-              <% get_subordinates(@number.id) %>
-              <% @manage.each do |mngd| %>
+              <% @mng = get_subordinates(@number.id) %>
+              <% @mng.each do |mngd| %>
                 <div align="left">
                   <%= Number.find(mngd.subordinate_id).number %>
                 </div>
               <% end %>
             </p>
-              
+            
           </div>
         </div>
       </div>
