@@ -90,7 +90,7 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
   
   # In order to jQuery work on heroku
-  require 'jquery/modal/rails'
-  require 'jquery/modal/filters'
-  require 'jquery/modal/helpers'  
+  #require 'jquery/modal/rails'
+  #require 'jquery/modal/filters'
+  #require 'jquery/modal/helpers'  
 end
