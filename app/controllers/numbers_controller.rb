@@ -28,7 +28,8 @@ class NumbersController < ApplicationController
   # POST /numbers
   # POST /numbers.json
   def create
-    number_params["number"] = number_params["countrycode"] + number_params["cn"] + number_params["prefix"] + number_params["mcdu"]
+  
+    params["number"]["number"] = params["number"]["countrycode"] +  params["number"]["cn"] +  params["number"]["prefix"] +  params["number"]["mcdu"]
     @number = Number.new(number_params)
 
     respond_to do |format|
@@ -54,7 +55,7 @@ class NumbersController < ApplicationController
   def update
     respond_to do |format|
 
-      number_params["number"] = number_params["countrycode"] + number_params["cn"] + number_params["prefix"] + number_params["mcdu"]
+      params["number"]["number"] = params["number"]["countrycode"] +  params["number"]["cn"] +  params["number"]["prefix"] +  params["number"]["mcdu"]
       if @number.update(number_params)
         # byebug
         NumberRuletype.where(number_id: @number.id).destroy_all
