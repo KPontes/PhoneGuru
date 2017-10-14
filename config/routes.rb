@@ -14,6 +14,8 @@ Rails.application.routes.draw do
   namespace :api do
     #resources :numbersapi do
       post 'number_retrieve/:num', :controller => '/api/numbers', :action => 'number_retrieve'
+      post 'ruletype_retrieve/:num', :controller => '/api/numbers', :action => 'ruletype_retrieve'
+      get 'subordinate_retrieve/:num', :controller => '/api/numbers', :action => 'subordinate_retrieve'
       post 'number_create/:number,:cn,:prefix,:mcdu,:countrycode', :controller => '/api/numbers', :action => 'number_create'
     #end
   end

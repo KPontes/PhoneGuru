@@ -1,10 +1,31 @@
 class Api::NumbersController < ActionController::API
-  before_action :set_number_num, only: [:number_retrieve]
+  before_action :set_number_num, only: [:number_retrieve, :ruletype_retrieve, :subordinate_retrieve]
   before_action :set_number_fields, only: [:number_create]
 
 
   def number_retrieve
     render json: @number
+  end
+  
+  def ruletype_retrieve
+    @ruletype = @number.ruletypes
+    render json: @ruletype
+  end
+
+  def subordinate_retrieve
+    begin
+      @mng = get_subordinates(@number.id)
+    rescue
+      render json: nil
+      return
+    end  
+    
+    _subordinate = Hash.new( "subordinate" )
+    @mng.each do |mngd|
+      _subordinate[mngd.subordinate_id] = Number.find(mngd.subordinate_id).number
+    end
+
+    render json: _subordinate
   end
 
   def number_create
@@ -33,6 +54,11 @@ class Api::NumbersController < ActionController::API
       @number.prefix = params[:prefix]
       @number.mcdu = params[:mcdu]
       @number.countrycode = params[:countrycode]
+    end
+    
+    def get_subordinates(manager_id)
+      @mang = Manage.where("manager_id = ?", manager_id)
+      return @mang
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
