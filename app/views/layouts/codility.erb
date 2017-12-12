@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Codility</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'numbers', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'codility', 'data-turbolinks-track': 'reload' %>
+  
+  </head>
+
+  <body>
+    <div class="site-wrapper background_number">
+      <div class="site-wrapper-inner">
+        <div class="cover-container"> 
+          <%= yield %>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

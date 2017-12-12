@@ -165,5 +165,70 @@ module CodilityHelper
     return b[b.size-1]-1
   end
 
+  def maxCounter(n, a)
+    _counters = Array.new(n, 0)
+    _max = 0
+    for i in 0..a.size-1
+      if a[i] <= n then
+        _counters[a[i]-1] += 1
+        if _counters[a[i]-1] > _max then
+          _max = _counters[a[i]-1]
+        end
+      else
+        n.times do |num|
+          _counters[num] = _max
+        end
+      end
+    end
+    #puts _counters
+    return _counters
+  end
+
+  def countDiv(a, b, k)
+    _result = 0
+    if ((a%k == 0) || (b%k == 0) || k.between?(a, b)) then
+      _result +=1
+    end
+     _result += (b-a)/k
+    return _result
+  end
+
+  def passingCars(a, n)
+    _result = Array.new
+    _east = Array.new
+    for i in 0..a.size-1
+      if a[i] == 0 then
+        _east.push(i)
+      else
+        _west = i
+        for j in 0.._east.size-1
+          _result.push([_east[j],_west])
+        end
+      end
+    end
+    #puts "resultado: #{ _result}"
+    return _result.count
+  end
+  
+  def genomicRangeQuery(s, p, q)
+    
+    _genomic = Array.new
+    for i in 0..p.size-1
+      _min = "Z"
+      _tempStr = s[p[i]..q[i]]
+      if _tempStr.include?("A") then
+        _genomic[i] = 1
+        elsif _tempStr.include?("C") then
+           _genomic[i] = 2
+        elsif _tempStr.include?("G") then
+           _genomic[i] = 3
+        else
+           _genomic[i] = 4
+      end
+    end
+    return _genomic
+  
+  end
+
 end
 

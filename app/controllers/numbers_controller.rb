@@ -12,6 +12,7 @@ class NumbersController < ApplicationController
   # GET /numbers/1.json
   def show
     @ruletype = @number.ruletypes
+    @mng = get_subordinates(@number.id)
   end
 
   # GET /numbers/new

@@ -59,7 +59,7 @@
           <div class="col-md-4">
             <p align="left">
               <strong>Managed Numbers:</strong>
-              <% @mng = get_subordinates(@number.id) %>
+
               <% @mng.each do |mngd| %>
                 <div align="left">
                   <%= Number.find(mngd.subordinate_id).number %>
