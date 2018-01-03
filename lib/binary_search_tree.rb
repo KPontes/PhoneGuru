@@ -15,7 +15,7 @@ class BinarySearchTree
 
     # Initialize the Root Node
     def initialize val
-        puts "Initializing with: " + val.to_s
+        # puts "Initializing with: " + val.to_s
         @root = TreeNode.new(val,nil,nil)
         @hTraversal = Hash.new
         @hTraversal["In"]=[]
@@ -72,7 +72,7 @@ class BinarySearchTree
     # when you hit a nil node, it means, the new node should be created there
     # Duplicate values are not inserted in the tree
     def insert(value)
-        puts "Inserting :" + value.to_s
+        #puts "Inserting :" + value.to_s
         current_node = @root
         while nil != current_node
             if (value < current_node.value) && (current_node.left == nil)
